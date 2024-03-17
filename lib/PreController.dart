@@ -7,7 +7,6 @@ class PreloadController extends GetxController {
   var isLoading = false.obs;
   var urls = <String>[].obs;
   var focusedIndex = 0.obs;
-  var reloadCounter = 0.obs;
   RxMap<int, VideoPlayerController?> controllers =
       RxMap<int, VideoPlayerController?>({});
 
@@ -19,8 +18,8 @@ class PreloadController extends GetxController {
 
   Future<void> getVideosFromApi() async {
     setLoading(true);
-    final List<String> urls = await ApiService.getVideos();
-    urls.addAll(urls);
+    final List<String> urlsfetched = await ApiService.getVideos();
+    urls.addAll(urlsfetched);
 
     await _initializeControllerAtIndex(0);
 
@@ -39,14 +38,6 @@ class PreloadController extends GetxController {
     }
 
     focusedIndex.value = index;
-  }
-
-  void updateUrls(List<String> newUrls) {
-    urls.addAll(newUrls);
-
-    _initializeControllerAtIndex(focusedIndex.value + 1);
-
-    reloadCounter++;
   }
 
   Future<void> _initializeControllerAtIndex(int index) async {
