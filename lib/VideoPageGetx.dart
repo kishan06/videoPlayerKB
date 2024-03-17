@@ -163,8 +163,18 @@ class _VideoPlayerKBState extends State<VideoPlayerKB> {
                               },
                               child: Stack(
                                 children: [
-                                  VideoPlayer(
-                                      preloadcontroller.controllers[index]!),
+                                  InkWell(
+                                    onTap: () {
+                                      preloadcontroller.controllers[index]!
+                                              .value.isPlaying
+                                          ? preloadcontroller.controllers[index]
+                                              ?.pause()
+                                          : preloadcontroller.controllers[index]
+                                              ?.play();
+                                    },
+                                    child: VideoPlayer(
+                                        preloadcontroller.controllers[index]!),
+                                  ),
                                   likeAndShare(
                                       shortClipModel, index, scLikesModel),
                                   titleAndDescription(shortClipModel)
