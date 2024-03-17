@@ -16,6 +16,14 @@ class PreloadController extends GetxController {
     getVideosFromApi();
   }
 
+  @override
+  void onClose() {
+    for (final controller in controllers.values) {
+      controller?.dispose();
+    }
+    super.onClose();
+  }
+
   Future<void> getVideosFromApi() async {
     setLoading(true);
     final List<String> urlsfetched = await ApiService.getVideos();

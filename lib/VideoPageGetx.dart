@@ -42,13 +42,13 @@ class _VideoPlayerKBState extends State<VideoPlayerKB> {
     widget.videoControllers.clear();
   }
 
-  @override
-  void dispose() {
-    for (var c in widget.videoControllers) {
-      c.dispose();
-    }
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   for (var c in widget.videoControllers) {
+  //     c.dispose();
+  //   }
+  //   super.dispose();
+  // }
 
   void initDeepLinkData(int index) {
     metadata = BranchContentMetaData()
